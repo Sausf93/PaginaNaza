@@ -139,6 +139,7 @@ strong { font-weight: 500; color: var(--ink); }
   object-fit: cover; box-shadow: var(--shadow);
 }
 .portrait--square .portrait__ph, .portrait--square .portrait__img { aspect-ratio: 1/1; }
+.portrait--tall .portrait__img { aspect-ratio: 3/4; object-position: 50% 50%; }
 .portrait__img { object-position: 50% 22%; background: var(--sand); }
 .portrait__ph {
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .8rem;
