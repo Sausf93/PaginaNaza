@@ -1,21 +1,36 @@
 // ===== Menú móvil =====
 const toggle = document.getElementById('navToggle');
 const menu = document.getElementById('menu');
+let savedScrollY = 0;
+
+function openMenu() {
+  savedScrollY = window.scrollY || window.pageYOffset || 0;
+  menu.classList.add('open');
+  document.body.classList.add('menu-open');
+  document.body.style.top = `-${savedScrollY}px`;   // bloqueo de scroll robusto (iOS/Android)
+  toggle.setAttribute('aria-expanded', 'true');
+  toggle.setAttribute('aria-label', 'Cerrar menú');
+}
+
+function closeMenu() {
+  menu.classList.remove('open');
+  document.body.classList.remove('menu-open');
+  document.body.style.top = '';
+  window.scrollTo(0, savedScrollY);                 // devolver a donde estaba
+  toggle.setAttribute('aria-expanded', 'false');
+  toggle.setAttribute('aria-label', 'Abrir menú');
+}
 
 toggle.addEventListener('click', () => {
-  const open = menu.classList.toggle('open');
-  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-  toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
-  document.body.style.overflow = open ? 'hidden' : '';
+  if (menu.classList.contains('open')) closeMenu(); else openMenu();
 });
 
 // Cerrar el menú al pulsar un enlace
-menu.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    menu.classList.remove('open');
-    toggle.setAttribute('aria-expanded', 'false');
-    document.body.style.overflow = '';
-  });
+menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+
+// Cerrar con la tecla Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
 });
 
 // ===== Año dinámico en el footer =====
