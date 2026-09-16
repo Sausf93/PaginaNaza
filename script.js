@@ -39,3 +39,22 @@ if ('IntersectionObserver' in window) {
 } else {
   revealEls.forEach(el => el.classList.add('in'));
 }
+
+// ===== Mapa: cargar Google Maps solo al pulsar (privacidad) =====
+const mapFacade = document.getElementById('mapFacade');
+if (mapFacade) {
+  const loadMap = () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://maps.google.com/maps?q=C%2F%20Darias%20Padr%C3%B3n%201%2C%2038003%20Santa%20Cruz%20de%20Tenerife&z=16&output=embed';
+    iframe.title = 'Ubicación de la consulta en Google Maps';
+    iframe.loading = 'lazy';
+    iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    iframe.allowFullscreen = true;
+    mapFacade.parentElement.classList.add('map--loaded');
+    mapFacade.replaceWith(iframe);
+  };
+  mapFacade.addEventListener('click', loadMap);
+  mapFacade.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); loadMap(); }
+  });
+}
