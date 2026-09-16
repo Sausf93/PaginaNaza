@@ -45,7 +45,7 @@ const mapFacade = document.getElementById('mapFacade');
 if (mapFacade) {
   const loadMap = () => {
     const iframe = document.createElement('iframe');
-    iframe.src = 'https://maps.google.com/maps?q=C%2F%20Darias%20Padr%C3%B3n%201%2C%2038003%20Santa%20Cruz%20de%20Tenerife&z=16&output=embed';
+    iframe.src = 'https://maps.google.com/maps?q=Centro%20Comercial%20Nuestra%20Se%C3%B1ora%20de%20%C3%81frica%2C%20Santa%20Cruz%20de%20Tenerife&z=16&output=embed';
     iframe.title = 'Ubicación de la consulta en Google Maps';
     iframe.loading = 'lazy';
     iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
