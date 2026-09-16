@@ -333,6 +333,8 @@ strong { font-weight: 500; color: var(--ink); }
   .nav__links.open { transform: translateX(0); visibility: visible; pointer-events: auto; }
   .nav__links a { font-size: 1.15rem; }
   .nav__links a.btn { margin-top: .4rem; }
+  /* Con el menú abierto, la X se fija a la pantalla (siempre accesible, aunque haya scroll) */
+  .nav__toggle[aria-expanded="true"] { position: fixed; top: 1.6rem; right: 1.5rem; z-index: 65; }
 
   .hero__inner { grid-template-columns: 1fr; }
   .hero__media { order: -1; max-width: 320px; margin-inline: auto; }
